@@ -3,8 +3,9 @@ var app = express();
 
 var port = 3000;
 
+var ongoing_matches = {};
 
-app.post('/', function(req, res) {
+app.post('/update', function(req, res) {
     console.log("Handling POST request... " + Math.round(new Date()/1000));
     res.writeHead(200, {'Content-Type': 'text/html'});
 
@@ -14,10 +15,15 @@ app.post('/', function(req, res) {
     });
 
     req.on('end', function(){
-        console.log("POST payload: " + body);
+        //console.log(JSON.parse(body));
         res.end('');
-    })
+        //var steamid = body.provider.steamid;
+        //ongoing_matches.put(steamid, body);
+        io.emit('news', { matches: JSON.parse(body) });
+    });
 });
+
+app.use(express.static('./public'));
 
 var server = app.listen(port, function () {
 
@@ -26,4 +32,14 @@ var server = app.listen(port, function () {
 
   console.log("Example app listening at http://%s:%s", host, port)
 
+});
+
+var io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+    console.log("User connected");
+  //socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 });

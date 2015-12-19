@@ -1,0 +1,18 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSGO STATS</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="content">
+        <!-- this is where the root react component is rendered -->
+    </div>
+    <!-- include the webpack-dev-server script so our scripts get reloaded when we make a change -->
+    <!-- we'll run the webpack dev server on port 8090, so make sure it is correct -->
+    <script src="http://localhost:2992/webpack-dev-server.js"></script>
+    <!-- include the bundle that contains all our scripts, produced by webpack -->
+    <!-- the bundle is served by the webpack-dev-server, so serve it also from localhost:8090 -->
+    <script type="text/javascript" src="http://localhost:2992/public/bundle.js"></script>
+</body>
+</html>
