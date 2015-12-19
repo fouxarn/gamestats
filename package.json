@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/fouxarn/gamestats/issues"
   },
-  "homepage": "https://github.com/fouxarn/gamestats#readme"
+  "homepage": "https://github.com/fouxarn/gamestats#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
