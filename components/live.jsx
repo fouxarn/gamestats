@@ -1,11 +1,12 @@
-var React = require('react')
+import React from 'react'
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return {matches: ["test"]};
-    },
+class Live extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {matches: ["test"]};
+    }
 
-    componentDidMount: function() {
+    componentDidMount() {
         var socket = io.connect('http://localhost:3000');
         var that = this;
         socket.on('news', function (data) {
@@ -13,9 +14,9 @@ module.exports = React.createClass({
           that.setState({matches: JSON.stringify(data, null, 2)});
           //socket.emit('my other event', { my: 'data' });
         });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div>
                 Hello React <br/><br/>
@@ -23,4 +24,6 @@ module.exports = React.createClass({
             </div>
         )
     }
-})
+}
+
+export default Live
